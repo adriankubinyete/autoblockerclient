@@ -61,9 +61,23 @@ function instalar_pm_two {
 
 function editar_env {
     echo 'Editando configurações do ".env"'
+
+    # Geral
     run sed -i "s/CONTRATO=.*/CONTRATO=$CONTRATO/" "$CURRDIR/.env"
     run sed -i "s/VERBOSITY=.*/VERBOSITY=$LOG_VERBOSITY/" "$CURRDIR/.env"
     run sed -i "s/LOGFILE_VERBOSITY=.*/LOGFILE_VERBOSITY=$LOGFILE_VERBOSITY/" "$CURRDIR/.env"
+
+    # Buffer
+    run sed -i "s/REQ_PROTOCOL=.*/REQ_PROTOCOL=$BUFFER_PROTOCOL/" "$CURRDIR/.env"
+    run sed -i "s/REQ_URL=.*/REQ_URL=$BUFFER_URL/" "$CURRDIR/.env"
+    run sed -i "s/REQ_PORT=.*/REQ_PORT=$BUFFER_PORT/" "$CURRDIR/.env"
+
+    # JWT
+    run sed -i "s/JWT_USER=.*/JWT_USER=$JWT_USER/" "$CURRDIR/.env"
+    run sed -i "s/JWT_PASSWORD=.*/JWT_PASSWORD=$JWT_PASSWORD/" "$CURRDIR/.env"
+
+    # Hook
+    run sed -i "s/NOTIFY_ERROR_WEBHOOK=.*/NOTIFY_ERROR_WEBHOOK=$WEBHOOK_URL/" "$CURRDIR/.env"
 }
 
 function inicializar_pm_two {
