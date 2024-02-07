@@ -2,3 +2,5 @@
 logs/
 docker-logs/*
 node_modules
+.gitignore
+.git
