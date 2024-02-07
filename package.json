@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "axios": "^1.6.7",
+    "date-fns": "^3.3.1",
+    "discord-webhook-node": "^1.1.8",
+    "dotenv": "^16.4.1",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
+    "node-schedule": "^2.1.1",
+    "npmlog": "^7.0.1",
+    "npmlog-file": "^0.1.4",
+    "pm2": "^5.3.1",
+    "request": "^2.88.2",
+    "winston": "^3.11.0"
+  }
+}
