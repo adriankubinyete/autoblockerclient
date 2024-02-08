@@ -77,7 +77,7 @@ function editar_env {
     run sed -i "s/JWT_PASSWORD=.*/JWT_PASSWORD=$JWT_PASSWORD/" "$CURRDIR/.env"
 
     # Hook
-    run sed -i "s/NOTIFY_ERROR_WEBHOOK=.*/NOTIFY_ERROR_WEBHOOK=$WEBHOOK_URL/" "$CURRDIR/.env"
+    run sed -i "s,NOTIFY_ERROR_WEBHOOK=.*,NOTIFY_ERROR_WEBHOOK=$WEBHOOK_URL," "$CURRDIR/.env"
 }
 
 function inicializar_pm_two {

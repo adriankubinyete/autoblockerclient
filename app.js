@@ -46,7 +46,7 @@ const main = async () => {
     if (!asteriskStatus) { // Falha para obter status do Asterisk: notificar
         contract = response.contract;
         contract_is_blocked = response.is_blocked;
-        notifyWebhook();
+        notifyWebhook('Não foi possível obter o status do Asterisk');
         return; // Encerro este heartbeat por aqui
     }
 
@@ -67,7 +67,7 @@ const main = async () => {
     // Estou com o Status do Asterisk, e as informações do Contrato.
     // Está tudo certo, logo, vou atualizar o Asterisk com base em ambos.
     if (await updateAsteriskStatus(asteriskStatus, contract_is_blocked, log) === null) {
-        notifyWebhook()
+        notifyWebhook('Não foi possível atualizar o Status do Asterisk')
     } else {
         log.info("Status do Asterisk: OK")
     }
@@ -80,7 +80,7 @@ const heartbeat = schedule.scheduleJob(CRON, async function () {
     await main()
 });
 
-const notifyWebhook = async () => {
+const notifyWebhook = async (error) => {
     let hostIp;
     hostIp = await getHostIp(log, 'public'); // Preferência por IP público
     log.unit(`Endereço de IP obtido: ${hostIp}`)
@@ -88,6 +88,7 @@ const notifyWebhook = async () => {
     log.unit('Gerando a embed...')
     let embed = embedErro(); // Gero a embed
     if (hostIp) {embed.setURL('https://' + hostIp)}; // Só seto URL se tiver obtido um IP
+    if (error) {embed.description(`**${error}**`)};
     embed.setTitle(`${contract.id_cliente} - ${contract.razao}`);
     embed.addField(`ID Contrato`, `\`${contract.id_contrato}\``, true);
     embed.addField(` `, ` `, true); // Espaçamento
