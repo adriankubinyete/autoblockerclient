@@ -1,13 +1,5 @@
-// npm install winston
 const winston = require('winston');
-
-// CRITICAL : algo essencial não vai funcionar.
-// ERROR    : algo relativamente inesperado ocorreu.
-// WARN     : algo pode dar errado.
-// INFO     : informativo
-// DEBUG    : informações extras / exageradas
-// UNIT     : teste de unidade. conferir valor de variável, true/falses básicos, etc.
-// TEST     : casos específicos
+const DailyRotateFile = require('winston-daily-rotate-file');
 
 const generateLogger = (logName, logfileLocation, logLevelFilter = 'debug') => {
     const levels = { critical: 0, error: 1, warn: 2, info: 3, debug: 4, unit: 5, test: 6 };
@@ -48,8 +40,12 @@ const generateLogger = (logName, logfileLocation, logLevelFilter = 'debug') => {
     }
 
     if (numericLogLevel >= numericLogfileLevel) {
-        const fileTransport = new winston.transports.File({
+        const fileTransport = new DailyRotateFile({
             filename: logfileLocation,
+            datePattern: 'YYYY-MM-DD',
+            zippedArchive: true,
+            maxSize: '20m', // tamanho máximo de cada arquivo de log
+            maxFiles: '14d', // número máximo de dias que os arquivos de log serão mantidos
             format: winston.format.combine(
                 winston.format.label({ label: logName }),
                 winston.format.timestamp({ format: 'DD/MM/YYYY HH:mm:ss.SSSSSS' }),
