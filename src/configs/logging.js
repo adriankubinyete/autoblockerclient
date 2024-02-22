@@ -41,7 +41,7 @@ const generateLogger = (logName, logfileLocation, logLevelFilter = 'debug') => {
 
     if (numericLogLevel >= numericLogfileLevel) {
         const fileTransport = new DailyRotateFile({
-            filename: logfileLocation,
+            filename: `${logfileLocation}-%DATE%.log`,
             datePattern: 'YYYY-MM-DD',
             zippedArchive: true,
             maxSize: '20m', // tamanho máximo de cada arquivo de log
