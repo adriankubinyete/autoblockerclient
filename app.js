@@ -88,7 +88,7 @@ const notifyWebhook = async (error) => {
     log.unit('Gerando a embed...')
     let embed = embedErro(); // Gero a embed
     if (hostIp) {embed.setURL('https://' + hostIp)}; // Só seto URL se tiver obtido um IP
-    if (error) {embed.description(`**${error}**`)};
+    if (error) {embed.setDescription(`**${error}**`)};
     embed.setTitle(`${contract.id_cliente} - ${contract.razao}`);
     embed.addField(`ID Contrato`, `\`${contract.id_contrato}\``, true);
     embed.addField(` `, ` `, true); // Espaçamento
