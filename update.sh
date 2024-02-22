@@ -83,7 +83,7 @@ function preparar_nova_versao {
     echo "$(colorir 'azul' 'Preparando nova versão')..."
     DOWNLOAD_URL=$REPO_ARCHIVE/$VERSION.tar.gz
     PARENT_FOLDER=$(dirname $CURRDIR)
-    TAR_OUTPUT_FOLDER=$PARENT_FOLDER/$REPO_NAME-$VERSION
+    TAR_OUTPUT_FOLDER=$PARENT_FOLDER/.$REPO_NAME-$VERSION
     NEW_DIR=$TAR_OUTPUT_FOLDER
     OLD_DIR=$CURRDIR
 
