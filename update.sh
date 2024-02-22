@@ -87,6 +87,8 @@ function preparar_nova_versao {
     NEW_DIR=$TAR_OUTPUT_FOLDER
     OLD_DIR=$CURRDIR
 
+    echo "<#>-<#>-<#>-<#> OUTPUT DIRECTORY PATH: $NEW_DIR <#>-<#>-<#>-<#>"
+
     echo "- Repository Archive Source : $REPO_ARCHIVE"
     echo "- Version (TAG) to Download : $VERSION"
     echo "- Download URL              : $DOWNLOAD_URL"
